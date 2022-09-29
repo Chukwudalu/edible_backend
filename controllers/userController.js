@@ -14,7 +14,7 @@ const filterObj = (obj, ...expectedFields) => {
     return newObj
 }
 
-exports.getAllUsers = catchAsync(async () => {
+exports.getAllUsers = catchAsync(async (req, res, next) => {
     const users = await User.find();
 
     res.status(200).json({
@@ -26,7 +26,7 @@ exports.getAllUsers = catchAsync(async () => {
     })
 }) 
 
-exports.updateMe = catchAsync( async () => {
+exports.updateMe = catchAsync( async (req, res, next) => {
     // Create error if user POSTS password data
     if(req.body.password || req.body.confirmPassword){
         return next(new AppError('This route is not for updating password'))

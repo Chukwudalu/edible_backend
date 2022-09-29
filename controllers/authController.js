@@ -104,7 +104,7 @@ exports.protect = catchAsync( async (req, res, next) => {
     next()
 })
 
-exports.forgotPassword = catchAsync(async () => {
+exports.forgotPassword = catchAsync(async (req, res, next) => {
     // Get user based on posted email
     const user = await User.findOne({email: req.body.email})
     if(!user){
